@@ -1,4 +1,4 @@
-﻿CREATE DATABASE QLTV
+CREATE DATABASE QLTV
 USE QLTV
 -----------------------
 set dateformat DMY
@@ -389,7 +389,6 @@ CREATE TABLE PHIEUNHAPSACH (
 	TongTien money default (0)
 	)
 	-------------------
-	----------------------------------------------------------->
 CREATE FUNCTION [dbo].[AUTO_MCTPN]()--
 RETURNS VARCHAR(8)
 AS
@@ -405,9 +404,7 @@ BEGIN
 		END
 	RETURN @ID
 END
--------- 
 go
--------------------------------------------------------------->
 CREATE TABLE CT_PHIEUNHAP(
 	MaCTPN Varchar(50) primary key default ([dbo].[AUTO_MCTPN]()),
 	MaPhieuNhapSach Varchar(50) not null,
@@ -415,10 +412,8 @@ CREATE TABLE CT_PHIEUNHAP(
 	SoLuong int not null,
 	DonGia money not null,
 	)
----------------------------------------------------------------->
 	alter table CT_PHIEUNHAP
 add ThanhTien as (DonGia*SoLuong) 
-------------------------------------------------------------------->
 ----------------------------
 CREATE FUNCTION [dbo].[AUTO_MPT]()--
 RETURNS VARCHAR(6)
@@ -570,51 +565,86 @@ ALTER TABLE CTBCMS ADD CONSTRAINT FK_CTBCMS01 FOREIGN KEY (MaBaoCaoMuonSach) REF
 ALTER TABLE BCTRATRE ADD CONSTRAINT FK_BCTT FOREIGN KEY (MaCuonSach) REFERENCES CUONSACH(MaCuonSach)
 ALTER TABLE BCTRATRE ADD CONSTRAINT FK_BCTT02 FOREIGN KEY (MaPhieuMuonSach) REFERENCES PHIEUMUON(MaPhieuMuonSach)
 ------------------
------------------------------------------------------------->
 ALTER TABLE dbo.CUONSACH ADD MaCTPN VARCHAR(50)
 ALTER TABLE dbo.CUONSACH ADD CONSTRAINT cs_fk FOREIGN KEY (MaCTPN) REFERENCES dbo.CT_PHIEUNHAP(MaCTPN)
 exec sp_DeleteAllData
--------------------------------------------------------------->
 ---------------------------------------------------------
 insert into PHIEUNHAPSACH (NgLap) values ('1/5/2015')
 ---------------------------------------------------------
-insert into TACGIA (TenTacGia) values (N'Nguyễn Nhật Ánh')
-insert into TACGIA (TenTacGia) values (N'Dale Caregie')
+insert into TACGIA (TenTacGia) values (N'Nguyễn Du')
+insert into TACGIA (TenTacGia) values (N'Ngô Tất Tố')
 insert into TACGIA (TenTacGia)values (N'Nam Cao')
-insert into TACGIA (TenTacGia)values (N'Kim Lân')
-insert into TACGIA (TenTacGia)values (N'Ngô Tất Tố')
 insert into TACGIA (TenTacGia)values (N'Vũ Trọng Phụng')
-insert into TACGIA (TenTacGia)values (N'Hồ Chí Minh')
-insert into TACGIA (TenTacGia) values (N'Andrew Matthews')
-insert into TACGIA (TenTacGia) values (N'Paulo Coelho')
+insert into TACGIA (TenTacGia)values (N'Nguyễn Ngọc Tư')
+insert into TACGIA (TenTacGia)values (N'Nhất Linh')
+insert into TACGIA (TenTacGia) values (N'Đoàn Giỏi')
+insert into TACGIA (TenTacGia)values (N'Nguyễn Nhật Ánh')
+insert into TACGIA (TenTacGia) values (N'Nguyễn Duy')
+insert into TACGIA (TenTacGia) values (N'Tô Hoài')
+insert into TACGIA (TenTacGia) values (N'Trần Văn Khê')
 insert into TACGIA (TenTacGia) values (N'Xuân Diệu')
+insert into TACGIA (TenTacGia) values (N'Hồ Xuân Hương')
+insert into TACGIA (TenTacGia) values (N'Huy Cận')
+insert into TACGIA (TenTacGia) values (N'Bùi Giáng')
+insert into TACGIA (TenTacGia) values (N'Hàn Mặc Tử')
+insert into TACGIA (TenTacGia) values (N'Hoàng Cầm')
+insert into TACGIA (TenTacGia) values (N'Tản Đà')
+insert into TACGIA (TenTacGia) values (N'Tố Hữu')
+insert into TACGIA (TenTacGia) values (N'Xuân Quỳnh')
+insert into TACGIA (TenTacGia) values (N'Nguyễn Quang Sáng')
+insert into TACGIA (TenTacGia) values (N'Hồ Anh Thái')
+
 ---------------------------------------------------------
-insert into THELOAI (TenTheLoai) values (N'Văn Học Nghệ Thuật')
-insert into THELOAI (TenTheLoai) values (N'Khoa Học')
-insert into THELOAI (TenTheLoai) values (N'Truyện')
+insert into THELOAI (TenTheLoai) values (N'Tiếu thuyết')
+insert into THELOAI (TenTheLoai) values (N'Truyện ngắn')
+insert into THELOAI (TenTheLoai) values (N'Thơ')
 ---------------------------------------------------------
-insert into DAUSACH (TenDauSach,MaTheLoai) values (N'Đắc Nhân Tâm','MTL001')
-insert into DAUSACH (TenDauSach,MaTheLoai) values (N'Tắt Đèn','MTL002')
-insert into DAUSACH (TenDauSach,MaTheLoai) values (N'Số Đỏ','MTL003')
-insert into DAUSACH (TenDauSach,MaTheLoai) values (N'Chí Phèo','MTL002')
-insert into DAUSACH (TenDauSach,MaTheLoai) values (N'Nhà Giả Kim','MTL002')
-insert into DAUSACH (TenDauSach,MaTheLoai) values (N'Đời Thay Đổi','MTL001')
-insert into DAUSACH (TenDauSach,MaTheLoai) values (N'Vợ Nhặt','MTL002')
+insert into DAUSACH (TenDauSach,MaTheLoai) values (N'Truyện Kiều','MTL003')
+insert into DAUSACH (TenDauSach,MaTheLoai) values (N'Tắt Đèn','MTL001')
+insert into DAUSACH (TenDauSach,MaTheLoai) values (N'Lão Hạc','MTL001')
+insert into DAUSACH (TenDauSach,MaTheLoai) values (N'Số đỏ','MTL001')
 insert into DAUSACH (TenDauSach,MaTheLoai) values (N'Sống Mòn','MTL001')
-insert into DAUSACH (TenDauSach,MaTheLoai) values (N'Thơ Thơ','MTL003')
-insert into DAUSACH (TenDauSach,MaTheLoai) values (N'Nhật Ký Trong Tù','MTL002')
+insert into DAUSACH (TenDauSach,MaTheLoai) values (N'Mặt Trời Lớn','MTL001')
+insert into DAUSACH (TenDauSach,MaTheLoai) values (N'Đất rừng Phương Nam','MTL001')
+insert into DAUSACH (TenDauSach,MaTheLoai) values (N'Cô gái đến từ hôm qua','MTL001')
+insert into DAUSACH (TenDauSach,MaTheLoai) values (N'Những người không tên','MTL001')
+insert into DAUSACH (TenDauSach,MaTheLoai) values (N'Truyện ngắn của Tô Hoài','MTL002')
+insert into DAUSACH (TenDauSach,MaTheLoai) values (N'Nỗi buồn chim sáo','MTL002')
+insert into DAUSACH (TenDauSach,MaTheLoai) values (N'Hoàng hôn','MTL003')
+insert into DAUSACH (TenDauSach,MaTheLoai) values (N'Từ tương tư','MTL003')
+insert into DAUSACH (TenDauSach,MaTheLoai) values (N'Chỉ vàng','MTL003')
+insert into DAUSACH (TenDauSach,MaTheLoai) values (N'Đôi mắt','MTL003')
+insert into DAUSACH (TenDauSach,MaTheLoai) values (N'Trăng non','MTL003')
+insert into DAUSACH (TenDauSach,MaTheLoai) values (N'Lệ đá','MTL003')
+insert into DAUSACH (TenDauSach,MaTheLoai) values (N'Hồn Trương Ba, da hàng thịt','MTL003')
+insert into DAUSACH (TenDauSach,MaTheLoai) values (N'Em yêu cây cỏ nước non','MTL003')
+insert into DAUSACH (TenDauSach,MaTheLoai) values (N'Cao nguyên xanh','MTL003')
+insert into DAUSACH (TenDauSach,MaTheLoai) values (N'Chữ người tử tù','MTL002')
+insert into DAUSACH (TenDauSach,MaTheLoai) values (N'Con chim xanh biếc bay về','MTL002')
 ---------------------------------------------------------
 
-insert into CTTACGIA values ('MDS001','MTG002')
-insert into CTTACGIA values ('MDS002','MTG005')
-insert into CTTACGIA values ('MDS003','MTG006')
-insert into CTTACGIA values ('MDS004','MTG003')
-insert into CTTACGIA values ('MDS005','MTG009')
-insert into CTTACGIA values ('MDS006','MTG008')
-insert into CTTACGIA values ('MDS007','MTG004')
-insert into CTTACGIA values ('MDS008','MTG003')
-insert into CTTACGIA values ('MDS009','MTG010')
-insert into CTTACGIA values ('MDS010','MTG007')
+insert into CTTACGIA values ('MDS001','MTG001')
+insert into CTTACGIA values ('MDS002','MTG002')
+insert into CTTACGIA values ('MDS003','MTG003')
+insert into CTTACGIA values ('MDS004','MTG004')
+insert into CTTACGIA values ('MDS005','MTG005')
+insert into CTTACGIA values ('MDS006','MTG006')
+insert into CTTACGIA values ('MDS007','MTG007')
+insert into CTTACGIA values ('MDS008','MTG008')
+insert into CTTACGIA values ('MDS009','MTG09')
+insert into CTTACGIA values ('MDS010','MTG010')
+insert into CTTACGIA values ('MDS011','MTG011')
+insert into CTTACGIA values ('MDS012','MTG012')
+insert into CTTACGIA values ('MDS013','MTG013')
+insert into CTTACGIA values ('MDS014','MTG014')
+insert into CTTACGIA values ('MDS015','MTG015')
+insert into CTTACGIA values ('MDS016','MTG016')
+insert into CTTACGIA values ('MDS017','MTG017')
+insert into CTTACGIA values ('MDS018','MTG018')
+insert into CTTACGIA values ('MDS019','MTG019')
+insert into CTTACGIA values ('MDS020','MTG020')
+insert into CTTACGIA values ('MDS021','MTG021')
+insert into CTTACGIA values ('MDS022','MTG022')
 
 ---------------------------------------------------------
 insert into SACH (MaDauSach,NhaXuatBan,NamXuatBan,TriGia) values ('MDS001',N'NXB Trẻ','2018','100000')
@@ -627,16 +657,41 @@ insert into SACH (MaDauSach,NhaXuatBan,NamXuatBan,TriGia) values ('MDS007',N'NXB
 insert into SACH (MaDauSach,NhaXuatBan,NamXuatBan,TriGia) values ('MDS008',N'NXB Văn Học','2020','120000')
 insert into SACH (MaDauSach,NhaXuatBan,NamXuatBan,TriGia) values ('MDS009',N'NXB Văn Học','2019','170000')
 insert into SACH (MaDauSach,NhaXuatBan,NamXuatBan,TriGia) values ('MDS010',N'NXB Văn Học','2020','150000')
-insert into CT_PHIEUNHAP (MaPhieuNhapSach,MaSach,SoLuong,DonGia) values ('MPNS001','MS001','1','100000')
-insert into CT_PHIEUNHAP (MaPhieuNhapSach,MaSach,SoLuong,DonGia) values ('MPNS001','MS002','1','100000')
-insert into CT_PHIEUNHAP (MaPhieuNhapSach,MaSach,SoLuong,DonGia) values ('MPNS001','MS003','1','200000')
-insert into CT_PHIEUNHAP (MaPhieuNhapSach,MaSach,SoLuong,DonGia) values ('MPNS001','MS004','1','150000')
-insert into CT_PHIEUNHAP (MaPhieuNhapSach,MaSach,SoLuong,DonGia) values ('MPNS001','MS005','1','100000')
-insert into CT_PHIEUNHAP (MaPhieuNhapSach,MaSach,SoLuong,DonGia) values ('MPNS001','MS006','1','105000')
-insert into CT_PHIEUNHAP (MaPhieuNhapSach,MaSach,SoLuong,DonGia) values ('MPNS001','MS007','1','100000')
-insert into CT_PHIEUNHAP (MaPhieuNhapSach,MaSach,SoLuong,DonGia) values ('MPNS001','MS008','1','120000')
-insert into CT_PHIEUNHAP (MaPhieuNhapSach,MaSach,SoLuong,DonGia) values ('MPNS001','MS009','1','170000')
-insert into CT_PHIEUNHAP (MaPhieuNhapSach,MaSach,SoLuong,DonGia) values ('MPNS001','MS010','1','150000')
+insert into SACH (MaDauSach,NhaXuatBan,NamXuatBan,TriGia) values ('MDS011',N'NXB Trẻ','2021','180000')
+insert into SACH (MaDauSach,NhaXuatBan,NamXuatBan,TriGia) values ('MDS012',N'NXB Văn Học','2020','130000')
+insert into SACH (MaDauSach,NhaXuatBan,NamXuatBan,TriGia) values ('MDS013',N'NXB Trẻ','2020','150000')
+insert into SACH (MaDauSach,NhaXuatBan,NamXuatBan,TriGia) values ('MDS014',N'NXB Văn Học','2018','120000')
+insert into SACH (MaDauSach,NhaXuatBan,NamXuatBan,TriGia) values ('MDS015',N'NXB Văn Học','2017','150000')
+insert into SACH (MaDauSach,NhaXuatBan,NamXuatBan,TriGia) values ('MDS016',N'NXB Văn Học','2020','110000')
+insert into SACH (MaDauSach,NhaXuatBan,NamXuatBan,TriGia) values ('MDS017',N'NXB Trẻ','2020','150000')
+insert into SACH (MaDauSach,NhaXuatBan,NamXuatBan,TriGia) values ('MDS018',N'NXB Văn Học','2020','200000')
+insert into SACH (MaDauSach,NhaXuatBan,NamXuatBan,TriGia) values ('MDS019',N'NXB Văn Học','2022','210000')
+insert into SACH (MaDauSach,NhaXuatBan,NamXuatBan,TriGia) values ('MDS020',N'NXB Văn Học','2021','150000')
+insert into SACH (MaDauSach,NhaXuatBan,NamXuatBan,TriGia) values ('MDS021',N'NXB Trẻ','2020','220000')
+insert into SACH (MaDauSach,NhaXuatBan,NamXuatBan,TriGia) values ('MDS022',N'NXB Văn Học','2019','240000')
+
+insert into CT_PHIEUNHAP (MaPhieuNhapSach,MaSach,SoLuong,DonGia) values ('MPNS001','MS001','10','100000')
+insert into CT_PHIEUNHAP (MaPhieuNhapSach,MaSach,SoLuong,DonGia) values ('MPNS001','MS002','10','100000')
+insert into CT_PHIEUNHAP (MaPhieuNhapSach,MaSach,SoLuong,DonGia) values ('MPNS001','MS003','10','200000')
+insert into CT_PHIEUNHAP (MaPhieuNhapSach,MaSach,SoLuong,DonGia) values ('MPNS001','MS004','10','150000')
+insert into CT_PHIEUNHAP (MaPhieuNhapSach,MaSach,SoLuong,DonGia) values ('MPNS001','MS005','10','100000')
+insert into CT_PHIEUNHAP (MaPhieuNhapSach,MaSach,SoLuong,DonGia) values ('MPNS001','MS006','10','105000')
+insert into CT_PHIEUNHAP (MaPhieuNhapSach,MaSach,SoLuong,DonGia) values ('MPNS001','MS007','10','100000')
+insert into CT_PHIEUNHAP (MaPhieuNhapSach,MaSach,SoLuong,DonGia) values ('MPNS001','MS008','10','120000')
+insert into CT_PHIEUNHAP (MaPhieuNhapSach,MaSach,SoLuong,DonGia) values ('MPNS001','MS009','10','170000')
+insert into CT_PHIEUNHAP (MaPhieuNhapSach,MaSach,SoLuong,DonGia) values ('MPNS001','MS010','10','150000')
+insert into CT_PHIEUNHAP (MaPhieuNhapSach,MaSach,SoLuong,DonGia) values ('MPNS001','MS011','10','180000')
+insert into CT_PHIEUNHAP (MaPhieuNhapSach,MaSach,SoLuong,DonGia) values ('MPNS001','MS012','10','130000')
+insert into CT_PHIEUNHAP (MaPhieuNhapSach,MaSach,SoLuong,DonGia) values ('MPNS001','MS013','10','150000')
+insert into CT_PHIEUNHAP (MaPhieuNhapSach,MaSach,SoLuong,DonGia) values ('MPNS001','MS014','10','120000')
+insert into CT_PHIEUNHAP (MaPhieuNhapSach,MaSach,SoLuong,DonGia) values ('MPNS001','MS015','10','150000')
+insert into CT_PHIEUNHAP (MaPhieuNhapSach,MaSach,SoLuong,DonGia) values ('MPNS001','MS016','10','110000')
+insert into CT_PHIEUNHAP (MaPhieuNhapSach,MaSach,SoLuong,DonGia) values ('MPNS001','MS017','10','150000')
+insert into CT_PHIEUNHAP (MaPhieuNhapSach,MaSach,SoLuong,DonGia) values ('MPNS001','MS018','10','200000')
+insert into CT_PHIEUNHAP (MaPhieuNhapSach,MaSach,SoLuong,DonGia) values ('MPNS001','MS019','10','210000')
+insert into CT_PHIEUNHAP (MaPhieuNhapSach,MaSach,SoLuong,DonGia) values ('MPNS001','MS020','10','150000')
+insert into CT_PHIEUNHAP (MaPhieuNhapSach,MaSach,SoLuong,DonGia) values ('MPNS001','MS021','10','220000')
+insert into CT_PHIEUNHAP (MaPhieuNhapSach,MaSach,SoLuong,DonGia) values ('MPNS001','MS022','10','240000')
 ---------------------------------------------------------
 insert into CUONSACH (MaSach,TinhTrang,MaCTPN) values ('MS001','1','MCTPN001')
 insert into CUONSACH (MaSach,TinhTrang,MaCTPN) values ('MS002','1','MCTPN002')
@@ -648,6 +703,20 @@ insert into CUONSACH (MaSach,TinhTrang,MaCTPN) values ('MS007','1','MCTPN007')
 insert into CUONSACH (MaSach,TinhTrang,MaCTPN) values ('MS008','1','MCTPN008')
 insert into CUONSACH (MaSach,TinhTrang,MaCTPN) values ('MS009','1','MCTPN009')
 insert into CUONSACH (MaSach,TinhTrang,MaCTPN) values ('MS010','1','MCTPN010')
+insert into CUONSACH (MaSach,TinhTrang,MaCTPN) values ('MS011','1','MCTPN011')
+insert into CUONSACH (MaSach,TinhTrang,MaCTPN) values ('MS012','1','MCTPN012')
+insert into CUONSACH (MaSach,TinhTrang,MaCTPN) values ('MS013','1','MCTPN013')
+insert into CUONSACH (MaSach,TinhTrang,MaCTPN) values ('MS014','1','MCTPN014')
+insert into CUONSACH (MaSach,TinhTrang,MaCTPN) values ('MS015','1','MCTPN015')
+insert into CUONSACH (MaSach,TinhTrang,MaCTPN) values ('MS016','1','MCTPN016')
+insert into CUONSACH (MaSach,TinhTrang,MaCTPN) values ('MS017','1','MCTPN017')
+insert into CUONSACH (MaSach,TinhTrang,MaCTPN) values ('MS018','1','MCTPN018')
+insert into CUONSACH (MaSach,TinhTrang,MaCTPN) values ('MS019','1','MCTPN019')
+insert into CUONSACH (MaSach,TinhTrang,MaCTPN) values ('MS020','1','MCTPN020')
+insert into CUONSACH (MaSach,TinhTrang,MaCTPN) values ('MS021','1','MCTPN021')
+insert into CUONSACH (MaSach,TinhTrang,MaCTPN) values ('MS022','1','MCTPN022')
+
+
 ---------------------------------------------------------
 ---------------------------------------------------------
 insert into THAMSO values ('6','18','55','8','4','5','1000')
@@ -655,16 +724,16 @@ insert into THAMSO values ('6','18','55','8','4','5','1000')
 insert into LOAIDOCGIA(TenLoaiDocGia) values (N'Sinh Viên')
 insert into LOAIDOCGIA(TenLoaiDocGia) values (N'Giảng Viên')
 ---------------------------------------------------------
-insert into DOCGIA (Hoten,MaLoaiDocGia,NgSinh,DChi,Email,NgLapThe,TongNo) values (N'Nguyễn Phúc Khang','MLDG001','10/5/2001',N'Hồ Chí Minh',N'NguyenVanA@gmail.com','2-1-2022','0')
-insert into DOCGIA (Hoten,MaLoaiDocGia,NgSinh,DChi,Email,NgLapThe,TongNo) values (N'Nguyễn Văn Pháp','MLDG001','22/5/2002',N'Bình Dương',N'NguyenVanB@gmail.com','12/3/2022','0')
-insert into DOCGIA (Hoten,MaLoaiDocGia,NgSinh,DChi,Email,NgLapThe,TongNo) values (N'Nguyễn Khúc Thùy Tiên','MLDG001','1/2/2000',N'Thủ Đức',N'NguyenVanC@gmail.com','1/4/2022','0')
-insert into DOCGIA (Hoten,MaLoaiDocGia,NgSinh,DChi,Email,NgLapThe,TongNo) values (N'Trần Đình Phúc','MLDG002','23/6/1999',N'Thủ Đức',N'NguyenVanD@gmail.com','13/4/2022','0')
-insert into DOCGIA (Hoten,MaLoaiDocGia,NgSinh,DChi,Email,NgLapThe,TongNo) values (N'Nguyễn Thị Linh','MLDG002','2/1/1998',N'Bình Dương',N'NguyenVanE@gmail.com','10/4/2022','0')
-insert into DOCGIA (Hoten,MaLoaiDocGia,NgSinh,DChi,Email,NgLapThe,TongNo) values (N'Trần Bảo Ngọc','MLDG001','1/1/2000',N'Hồ Chí Minh',N'NguyenVanF@gmail.com','13/4/2022','0')
-insert into DOCGIA (Hoten,MaLoaiDocGia,NgSinh,DChi,Email,NgLapThe,TongNo) values (N'Nguyễn Hoàng Linh Chi','MLDG002','1/10/1997',N'Thủ Đức',N'NguyenVanG@gmail.com','1/5/2022','0')
-insert into DOCGIA (Hoten,MaLoaiDocGia,NgSinh,DChi,Email,NgLapThe,TongNo) values (N'Trần Dư Gia Bảo','MLDG001','8/1/2002',N'Thủ Đức',N'NGuyenVanH@gmail.com','5/5/2022','0')
-insert into DOCGIA (Hoten,MaLoaiDocGia,NgSinh,DChi,Email,NgLapThe,TongNo) values (N'Nguyễn Cát Thiên Di','MLDG001','20/02/2002',N'Hồ Chí Minh',N'NguyenVanI@gmail.com','6/5/2022','0')
-insert into DOCGIA (Hoten,MaLoaiDocGia,NgSinh,DChi,Email,NgLapThe,TongNo) values (N'Hoàng Ngọc Bảo Tiên','MLDG002','1/2/1991',N'Hồ Chí Minh',N'NguyenVanK@gmail.com','10/5/2022','0')
+insert into DOCGIA (Hoten,MaLoaiDocGia,NgSinh,DChi,Email,NgLapThe,TongNo) values (N'Đỗ Đức Thái Vĩ Khang','MLDG001','10/5/2003',N'Long An',N'NguyenVanA@gmail.com','2-1-2022','0')
+insert into DOCGIA (Hoten,MaLoaiDocGia,NgSinh,DChi,Email,NgLapThe,TongNo) values (N'Đỗ Giang Nam','MLDG001','22/5/2003',N'Đồng Tháp',N'NguyenVanB@gmail.com','12/3/2022','0')
+insert into DOCGIA (Hoten,MaLoaiDocGia,NgSinh,DChi,Email,NgLapThe,TongNo) values (N'Đỗ Thị Bích Chi','MLDG001','1/2/2003',N'Quảng Ngãi',N'NguyenVanC@gmail.com','1/4/2022','0')
+insert into DOCGIA (Hoten,MaLoaiDocGia,NgSinh,DChi,Email,NgLapThe,TongNo) values (N'Đỗ Nguyên Triết','MLDG002','23/6/2000',N'Quảng Ngãi',N'NguyenVanD@gmail.com','13/4/2022','0')
+insert into DOCGIA (Hoten,MaLoaiDocGia,NgSinh,DChi,Email,NgLapThe,TongNo) values (N'Đỗ Minh Nhân','MLDG002','2/1/1992',N'Huế',N'NguyenVanE@gmail.com','10/4/2022','0')
+insert into DOCGIA (Hoten,MaLoaiDocGia,NgSinh,DChi,Email,NgLapThe,TongNo) values (N'Đỗ Nguyễn Hà Vy','MLDG001','1/1/2000',N'Sóc Trăng',N'NguyenVanF@gmail.com','13/4/2022','0')
+insert into DOCGIA (Hoten,MaLoaiDocGia,NgSinh,DChi,Email,NgLapThe,TongNo) values (N'Đỗ Minh Đức','MLDG002','1/10/1997',N'Đồng Nai',N'NguyenVanG@gmail.com','1/5/2022','0')
+insert into DOCGIA (Hoten,MaLoaiDocGia,NgSinh,DChi,Email,NgLapThe,TongNo) values (N'Đỗ Phúc Thọ','MLDG001','8/1/2002',N'Huế',N'NGuyenVanH@gmail.com','5/5/2022','0')
+insert into DOCGIA (Hoten,MaLoaiDocGia,NgSinh,DChi,Email,NgLapThe,TongNo) values (N'Đỗ Hạnh Thảo','MLDG001','20/02/2002',N'Vĩnh Long',N'NguyenVanI@gmail.com','6/5/2022','0')
+insert into DOCGIA (Hoten,MaLoaiDocGia,NgSinh,DChi,Email,NgLapThe,TongNo) values (N'Đỗ Thị Tường Vi','MLDG002','1/2/1991',N'Đắc Lắc',N'NguyenVanK@gmail.com','10/5/2022','0')
 ---------------------------------------------------------
 insert into PHIEUMUON (MaDocgia,NgMuon,HanTra) values ('DG001','11/1/2022','15/1/2022')
 insert into PHIEUMUON (MaDocgia,NgMuon,HanTra) values ('DG002','15/3/2022','19/3/2022')
@@ -705,12 +774,10 @@ insert into CTPT (MaPhieuTraSach,MaCuonSach,MaPhieuMuonSach,SoNgayMuon,TienPhat)
 insert into CTPT (MaPhieuTraSach,MaCuonSach,MaPhieuMuonSach,SoNgayMuon,TienPhat) values ('MPTS004','MCS004','MPMS004','1','0')
 insert into CTPT (MaPhieuTraSach,MaCuonSach,MaPhieuMuonSach,SoNgayMuon,TienPhat) values ('MPTS005','MCS005','MPMS005','1','0')
 insert into CTPT (MaPhieuTraSach,MaCuonSach,MaPhieuMuonSach,SoNgayMuon,TienPhat) values ('MPTS006','MCS006','MPMS006','1','0')
-insert into CTPT (MaPhieuTraSach,MaCuonSach,MaPhieuMuonSach,SoNgayMuon,TienPhat) values 
-('MPTS007','MCS007','MPMS007','1','0')
+insert into CTPT (MaPhieuTraSach,MaCuonSach,MaPhieuMuonSach,SoNgayMuon,TienPhat) values ('MPTS007','MCS007','MPMS007','1','0')
 insert into CTPT (MaPhieuTraSach,MaCuonSach,MaPhieuMuonSach,SoNgayMuon,TienPhat) values ('MPTS008','MCS008','MPMS008','1','0')
 insert into CTPT (MaPhieuTraSach,MaCuonSach,MaPhieuMuonSach,SoNgayMuon,TienPhat) values ('MPTS009','MCS009','MPMS009','1','0')
-insert into CTPT (MaPhieuTraSach,MaCuonSach,MaPhieuMuonSach,SoNgayMuon,TienPhat) values 
-('MPTS010','MCS010','MPMS010','1','0')
+insert into CTPT (MaPhieuTraSach,MaCuonSach,MaPhieuMuonSach,SoNgayMuon,TienPhat) values ('MPTS010','MCS010','MPMS010','1','0')
 ---------------------------------------------------------
 
 insert into BAOCAOMUONSACH ( ThangNam,TongSoLuotMuon) values ('3/1/2022','1')
